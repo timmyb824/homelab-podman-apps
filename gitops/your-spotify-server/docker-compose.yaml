@@ -1,6 +1,6 @@
 services:
   your-spotify-server:
-    image: docker.io/yooooomi/your_spotify_server:1.16.0
+    image: docker.io/yooooomi/your_spotify_server:1.17.0
     restart: always
     container_name: your-spotify-server
     ports:
