@@ -2,7 +2,7 @@
 services:
   dozzle:
     container_name: dozzle
-    image: docker.io/amir20/dozzle:v9.0.2
+    image: docker.io/amir20/dozzle:v9.0.3
     security_opt:
       - apparmor:unconfined
       - "label=type:container_runtime_t" # for podman use
