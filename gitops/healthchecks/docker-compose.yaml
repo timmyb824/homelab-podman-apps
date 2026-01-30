@@ -1,7 +1,7 @@
 ---
 services:
   healthchecks:
-    image: docker.io/healthchecks/healthchecks:v3.13
+    image: docker.io/healthchecks/healthchecks:v4.0
     restart: unless-stopped
     container_name: healthchecks
     environment:
