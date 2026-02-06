@@ -3,7 +3,7 @@ services:
   web:
     container_name: scrutiny-web
     restart: unless-stopped
-    image: "ghcr.io/analogj/scrutiny:master-web@sha256:05c8c28c25f63c0fb0361f2a5c3897e086076d4e9a3e75bd781682c28ee452c2"
+    image: "ghcr.io/analogj/scrutiny:master-web@sha256:a5442d604f391ac5391dece37922a2b3cdc0abe94e8f4def2f112a630590f745"
     ports:
       - "8091:8080"
     volumes:
