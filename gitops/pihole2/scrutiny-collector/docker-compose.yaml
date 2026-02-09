@@ -5,7 +5,7 @@ services:
   collector:
     container_name: scrutiny-collector
     restart: unless-stopped
-    image: "ghcr.io/analogj/scrutiny:master-collector@sha256:9f30bed57d8421d983e8ae807f311065f405a1695b5500d86c6ab20f3564dbde"
+    image: "ghcr.io/analogj/scrutiny:master-collector@sha256:207f858ea4a2ec75cb2d5bc33f58ee77def26cf2bd921b4e9f38260a2669f9a2"
     cap_add:
       - SYS_RAWIO
       - SYS_ADMIN
