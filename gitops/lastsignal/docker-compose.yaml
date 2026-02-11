@@ -26,6 +26,8 @@ services:
       PROCESS_CHECKINS_INTERVAL_MINUTES: ${PROCESS_CHECKINS_INTERVAL_MINUTES:-60}
       SOLID_QUEUE_IN_PUMA: "true"
     restart: unless-stopped
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=80
 
 volumes:
   lastsignal_storage:
