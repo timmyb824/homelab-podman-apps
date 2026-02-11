@@ -25,7 +25,7 @@ services:
       ALLOWED_EMAILS: ${ALLOWED_EMAILS:-}
       PROCESS_CHECKINS_INTERVAL_MINUTES: ${PROCESS_CHECKINS_INTERVAL_MINUTES:-60}
       SOLID_QUEUE_IN_PUMA: "true"
-      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-}
+      RAILS_DEVELOPMENT_HOSTS: ${RAILS_DEVELOPMENT_HOSTS:-}
     restart: unless-stopped
     sysctls:
       - net.ipv4.ip_unprivileged_port_start=80
