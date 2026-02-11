@@ -6,7 +6,7 @@ services:
     image: registry.local.timmybtech.com/lastsignal:latest
     container_name: lastsignal
     ports:
-      - "80:80"
+      - "8094:80"
     volumes:
       - lastsignal_storage:/rails/storage
     environment:
