@@ -4,6 +4,7 @@
 services:
   app:
     image: registry.local.timmybtech.com/lastsignal:latest
+    container_name: lastsignal
     ports:
       - "80:80"
     volumes:
