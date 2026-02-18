@@ -1,7 +1,7 @@
 ---
 services:
   server:
-    image: ghcr.io/scanopy/scanopy/server:v0.14.5
+    image: ghcr.io/scanopy/scanopy/server:v0.14.6
     container_name: scanopy-server
     network_mode: host
     environment:
