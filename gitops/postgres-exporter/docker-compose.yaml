@@ -5,7 +5,7 @@ services:
     container_name: postgres-exporter
     environment:
       - "DATA_SOURCE_NAME=${DATA_SOURCE_NAME}"
-    image: quay.io/prometheuscommunity/postgres-exporter:v0.19.0
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.19.1
     restart: unless-stopped
     labels:
       io.containers.autoupdate: "registry"
