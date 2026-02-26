@@ -8,6 +8,8 @@ services:
     volumes:
       - rackpeek-config:/app/config
     restart: unless-stopped
+    labels:
+      io.containers.autoupdate: "registry"
 
 volumes:
   rackpeek-config:
