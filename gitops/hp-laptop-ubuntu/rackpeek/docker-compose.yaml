@@ -1,0 +1,13 @@
+---
+services:
+  rackpeek:
+    image: docker.io/aptacode/rackpeek:v1.0.0
+    container_name: rackpeek
+    ports:
+      - "8080:8080"
+    volumes:
+      - rackpeek-config:/app/config
+    restart: unless-stopped
+
+volumes:
+  rackpeek-config:
