@@ -1,7 +1,7 @@
 ---
 services:
   daemon:
-    image: ghcr.io/scanopy/scanopy/daemon:v0.14.7
+    image: ghcr.io/scanopy/scanopy/daemon:v0.14.10
     container_name: scanopy-daemon
     network_mode: host
     privileged: true
