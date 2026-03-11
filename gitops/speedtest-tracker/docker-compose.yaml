@@ -18,14 +18,12 @@ services:
       - APP_KEY=${APP_KEY}
       - APP_DEBUG=false
       - APP_URL=https://speedtest.local.timmybtech.com/
-      - SPEEDTEST_SCHEDULE=0 */12 * * *
+      - SPEEDTEST_SCHEDULE=0 12 * * *
       - SPEEDTEST_INTERNET_CHECK_HOSTNAME=https://google.com
     volumes:
       - ./config:/config
       - ./web:/etc/ssl/web
     image: ghcr.io/linuxserver/speedtest-tracker:1.13.10
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
     labels:
       io.containers.autoupdate: "registry" # for use with podman
