@@ -13,6 +13,7 @@ services:
       SCANOPY_HEARTBEAT_INTERVAL: 30
       SCANOPY_MODE: Push
       SCANOPY_LOG_LEVEL: info
+      SCANOPY_DAEMON_API_KEY: ${SCANOPY_DAEMON_API_KEY}
     # healthcheck:
     #   test: ["CMD-SHELL", "curl -f http://localhost:60073/api/health || exit 1"]
     #   interval: 5s
