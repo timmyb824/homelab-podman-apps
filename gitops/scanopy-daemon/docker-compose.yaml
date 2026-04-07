@@ -11,7 +11,7 @@ services:
       SCANOPY_BIND_ADDRESS: 0.0.0.0
       SCANOPY_NAME: scanopy-daemon
       SCANOPY_HEARTBEAT_INTERVAL: 30
-      SCANOPY_MODE: Push
+      SCANOPY_MODE: server_poll
       SCANOPY_LOG_LEVEL: info
       SCANOPY_DAEMON_API_KEY: ${SCANOPY_DAEMON_API_KEY}
     # healthcheck:
