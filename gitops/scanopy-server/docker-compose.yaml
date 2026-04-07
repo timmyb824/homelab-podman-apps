@@ -11,6 +11,3 @@ services:
       SCANOPY_INTEGRATED_DAEMON_URL: http://127.0.0.1:60073
     volumes:
       - ./data:/data
-    # depends_on:
-    #   daemon:
-    #     condition: service_healthy
