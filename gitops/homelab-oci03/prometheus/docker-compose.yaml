@@ -4,7 +4,7 @@ volumes:
 
 services:
   prometheus:
-    image: docker.io/prom/prometheus:v3.11.0
+    image: docker.io/prom/prometheus:v3.11.2
     container_name: prometheus
     ports:
       - "9090:9090"
