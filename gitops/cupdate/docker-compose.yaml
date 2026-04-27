@@ -1,7 +1,7 @@
 ---
 services:
   cupdate:
-    image: ghcr.io/alexgustafsson/cupdate:0.24.4
+    image: ghcr.io/alexgustafsson/cupdate:0.24.5
     container_name: cupdate
     ports:
       - "8082:8080"
