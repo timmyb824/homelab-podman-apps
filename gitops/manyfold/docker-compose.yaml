@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/manyfold3d/manyfold:0.138.0
+    image: ghcr.io/manyfold3d/manyfold:0.139.0
     container_name: manyfold
     ports:
       - 3214:3214
