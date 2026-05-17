@@ -1,7 +1,7 @@
 ---
 services:
   pulse:
-    image: docker.io/rcourtman/pulse:5.1.30
+    image: docker.io/rcourtman/pulse:5.1.31
     container_name: pulse
     ports:
       - "7655:7655"
