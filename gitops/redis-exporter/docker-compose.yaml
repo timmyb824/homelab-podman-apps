@@ -1,7 +1,7 @@
 ---
 services:
   redis-exporter:
-    image: docker.io/oliver006/redis_exporter:v1.83.0
+    image: docker.io/oliver006/redis_exporter:v1.84.0
     container_name: redis-exporter
     ports:
       - "9121:9121"
