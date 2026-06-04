@@ -4,7 +4,9 @@ services:
     network_mode: host
     container_name: postgres-exporter
     environment:
-      - "DATA_SOURCE_NAME=${DATA_SOURCE_NAME}"
+      - "DATA_SOURCE_URI=${DATA_SOURCE_URI}"
+      - "DATA_SOURCE_USER=${DATA_SOURCE_USER}"
+      - "DATA_SOURCE_PASS=${DATA_SOURCE_PASS}"
     image: quay.io/prometheuscommunity/postgres-exporter:v0.19.1
     restart: unless-stopped
     labels:
