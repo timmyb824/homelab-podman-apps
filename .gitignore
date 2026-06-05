@@ -24,6 +24,7 @@ gitops/scrutiny-web/scrutiny.yaml
 gitops/scrutiny-web/config/
 gitops/manyfold/libraries/
 gitops/pihole2/prometheus/prometheus.yml
+gitops/pihole2/prometheus/prometheus.yml.bak
 
 # gitops-archive
 gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/*
