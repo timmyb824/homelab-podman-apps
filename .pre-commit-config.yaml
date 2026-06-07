@@ -22,7 +22,7 @@ repos:
       - id: ripsecrets
 
   - repo: https://github.com/trufflesecurity/trufflehog
-    rev: v3.91.1
+    rev: v3.95.4
     hooks:
       - id: trufflehog
         name: TruffleHog
