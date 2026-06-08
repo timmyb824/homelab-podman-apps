@@ -1,9 +1,0 @@
-services:
-  corosync-qnetd:
-    image: modelrockettier/corosync-qnetd
-    container_name: corosync-qnetd
-    restart: unless-stopped
-    volumes:
-      - ./data:/etc/corosync
-    ports:
-      - "5403:5403"
