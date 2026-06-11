@@ -7,6 +7,6 @@ services:
     volumes:
       - "./workdir:/opt/adguardhome/work"
       - "./confdir:/opt/adguardhome/conf"
-    image: docker.io/adguard/adguardhome
+    image: docker.io/adguard/adguardhome:v0.107.77
     labels:
       io.containers.autoupdate: "registry"
