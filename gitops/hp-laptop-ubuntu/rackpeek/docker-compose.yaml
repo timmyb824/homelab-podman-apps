@@ -1,7 +1,7 @@
 ---
 services:
   rackpeek:
-    image: docker.io/aptacode/rackpeek:v1.4.0
+    image: docker.io/aptacode/rackpeek:v2.0.0
     container_name: rackpeek
     ports:
       - "8080:8080"
