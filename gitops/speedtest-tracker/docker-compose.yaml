@@ -23,7 +23,7 @@ services:
     volumes:
       - ./config:/config
       - ./web:/etc/ssl/web
-    image: ghcr.io/linuxserver/speedtest-tracker:1.12.4
+    image: ghcr.io/linuxserver/speedtest-tracker:1.14.4
     restart: unless-stopped
     labels:
       io.containers.autoupdate: "registry" # for use with podman
