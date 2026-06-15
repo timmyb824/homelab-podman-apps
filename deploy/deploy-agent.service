@@ -3,6 +3,8 @@ Description=Podman GitOps Deploy Agent
 
 [Service]
 Type=oneshot
+# To use a host-specific app list, pass --config gitops-apps.<hostname>.conf
+# Example: ExecStart=%h/DEV/homelab/podman-apps/deploy/deploy-agent.sh --config gitops-apps.server1.conf
 ExecStart=%h/DEV/homelab/podman-apps/deploy/deploy-agent.sh
 WorkingDirectory=%h/DEV/homelab/podman-apps
 # optional, to make sure PATH includes sops/podman/etc
