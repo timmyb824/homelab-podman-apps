@@ -23,7 +23,7 @@ log() {
     echo "$(date +'%Y-%m-%d %H:%M:%S') - [$level] $message"
 }
 
-REPO="$HOME/DEV/homelab/podman-apps"
+REPO="$HOME/DEV/homelab/homelab-podman-apps"
 BRANCH="main"
 METRICS_STATE="$REPO/deploy/metrics_state"
 METRICS_OUT="/var/lib/node_exporter/textfile/podman_gitops.prom"
