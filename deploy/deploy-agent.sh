@@ -283,8 +283,7 @@ for app_dir in "${changed_app_dirs[@]}"; do
     fi
 
     # 2) redeploy
-    redeploy_app "$app_dir" "$service_name"
-    if [ $? -eq 0 ]; then
+    if redeploy_app "$app_dir" "$service_name"; then
         # increment per-app deploy counter
         service_safe="${service_name//[^a-zA-Z0-9_]/_}"
         var_key="deploy_count_${service_safe}"
