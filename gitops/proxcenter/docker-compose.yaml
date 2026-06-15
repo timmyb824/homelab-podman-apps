@@ -9,12 +9,12 @@ services:
       - proxcenter_data:/app/data
     env_file:
       - .env
-    healthcheck:
-      test: ["CMD", "curl", "-sf", "http://localhost:3000/api/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 12
-      start_period: 30s
+    # healthcheck:
+    #   test: ["CMD", "curl", "-sf", "http://localhost:3000/api/health"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 12
+    #   start_period: 30s
 
 volumes:
   proxcenter_data:
