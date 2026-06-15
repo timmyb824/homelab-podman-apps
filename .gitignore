@@ -22,11 +22,11 @@ gitops/paperless-ngx-exporter/config/auth-token.txt
 gitops/snmp-exporter/snmp.yml
 gitops/scrutiny-web/scrutiny.yaml
 gitops/scrutiny-web/config/
-gitops/manyfold/libraries/
 gitops/pihole2/prometheus/prometheus.yml
 gitops/pihole2/prometheus/prometheus.yml.bak
 
 # gitops-archive
 gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/*
+gitops-archive/manyfold/libraries/
 !/gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/health.d/
 !/gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/health.d/linux_power_supply.conf
