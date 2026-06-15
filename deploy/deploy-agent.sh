@@ -25,26 +25,37 @@ log() {
 
 REPO="$HOME/DEV/homelab/podman-apps"
 BRANCH="main"
-CONFIG="$REPO/gitops-apps.conf"
 METRICS_STATE="$REPO/deploy/metrics_state"
 METRICS_OUT="/var/lib/node_exporter/textfile/podman_gitops.prom"
 
 usage() {
     cat <<EOF
-Usage: $(basename "$0") [--force] [--app <name|path>]
+Usage: $(basename "$0") [--config <file>] [--force] [--app <name|path>]
 
 Options:
-  --force, -f       Deploy every configured app regardless of git changes.
-  --app, -a VALUE   Deploy only the specified app (match by config path or basename).
-  --help, -h        Show this message.
+  --config, -c FILE  Path to the apps config file (default: gitops-apps.conf).
+                     Relative paths are resolved from the repo root.
+  --force, -f        Deploy every configured app regardless of git changes.
+  --app, -a VALUE    Deploy only the specified app (match by config path or basename).
+  --help, -h         Show this message.
 EOF
 }
 
 FORCE_DEPLOY=false
 APP_SELECTOR=""
+CONFIG_ARG=""
 
 while [ $# -gt 0 ]; do
     case "$1" in
+    --config | -c)
+        if [ $# -lt 2 ]; then
+            msg_error "--config requires a value"
+            usage
+            exit 1
+        fi
+        CONFIG_ARG="$2"
+        shift
+        ;;
     --force | -f)
         FORCE_DEPLOY=true
         ;;
@@ -113,6 +124,22 @@ resolve_app_selector() {
     return 1
 }
 
+# resolve config file path
+if [ -n "$CONFIG_ARG" ]; then
+    if [[ "$CONFIG_ARG" = /* ]]; then
+        CONFIG="$CONFIG_ARG"
+    else
+        CONFIG="$REPO/$CONFIG_ARG"
+    fi
+else
+    CONFIG="$REPO/gitops-apps.conf"
+fi
+
+if [ ! -f "$CONFIG" ]; then
+    msg_error "Config file not found: $CONFIG"
+    exit 1
+fi
+
 # parse app configuration (directory + optional extra config files)
 declare -a app_dirs=()
 declare -A app_extra_configs=()
@@ -153,7 +180,7 @@ fi
 force_status="no"
 [ "$FORCE_DEPLOY" = true ] && force_status="yes"
 selected_status="${SELECTED_APP_DIR:-auto}"
-log INFO "deploy-agent start (force=$force_status app=$selected_status) repo=$REPO branch=$BRANCH"
+log INFO "deploy-agent start (force=$force_status app=$selected_status config=$CONFIG) repo=$REPO branch=$BRANCH"
 
 cd "$REPO"
 msg_info "Fetching origin/$BRANCH"
