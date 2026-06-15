@@ -223,9 +223,6 @@ redeploy_app() {
         msg_info "Starting containers for $service_name"
         podman-compose --in-pod=0 -p "$service_name" up -d --force-recreate
 
-        msg_info "Deleting existing quadlet for $service_name"
-        podman_quadlet.sh delete container "$service_name" 2>/dev/null || true
-
         msg_info "Creating quadlet for $service_name"
         podman_quadlet.sh create container "$service_name"
 
