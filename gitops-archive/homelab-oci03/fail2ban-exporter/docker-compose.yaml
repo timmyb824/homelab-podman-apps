@@ -1,0 +1,16 @@
+---
+services:
+  # Changed `/var/run/fail2ban/` permissions `sudo chown -R $(whoami):$(whoami) /var/run/fail2ban` and
+  # added `pid: host` to the service definition to allow the container to access the host's fail2ban socket
+  # TODO: Find a way to run this container as a non-root user
+  fail2ban:
+    image: registry.gitlab.com/hctrdev/fail2ban-prometheus-exporter:latest
+    container_name: fail2ban-exporter
+    volumes:
+      - /var/run/fail2ban/:/var/run/fail2ban:Z
+    restart: unless-stopped
+    ports:
+      - "9191:9191"
+    pid: host
+    labels:
+      io.containers.autoupdate: "registry"
