@@ -1,6 +1,4 @@
 ---
-version: "3.1"
-
 services:
   uptime-kuma:
     image: docker.io/louislam/uptime-kuma:2.4.0
@@ -14,5 +12,7 @@ services:
     # security_opt:
     #   - no-new-privileges:true
     network_mode: "host"
+    cap_add:
+      - NET_RAW
     labels:
       io.containers.autoupdate: "registry"
