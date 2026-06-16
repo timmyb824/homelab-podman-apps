@@ -13,5 +13,3 @@ services:
       - DOZZLE_HOSTNAME=${HOSTNAME}
     ports:
       - 7007:7007
-    labels:
-      io.containers.autoupdate: "registry"
