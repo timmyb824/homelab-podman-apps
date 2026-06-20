@@ -6,6 +6,9 @@ services:
     volumes:
       - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:z
       - hawser_stacks:/data/stacks
+    security_opt:
+      - apparmor:unconfined
+      - "label=type:container_runtime_t"
     ports:
       - "2376:2376"
     environment:
