@@ -2,7 +2,7 @@
 services:
   hawser:
     image: ghcr.io/finsys/hawser:0.2.45
-    container_name: hawser
+    container_name: hawser-for-dockhand
     volumes:
       - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:z
       - hawser_stacks:/data/stacks
