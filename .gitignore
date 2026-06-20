@@ -25,6 +25,7 @@ gitops/scrutiny-web/config/
 gitops/pihole2/prometheus/prometheus.yml
 gitops/pihole2/prometheus/prometheus.yml.bak
 gitops/homelab-oci03/prometheus/prometheus.yaml
+gitops/homelab-oci03/prometheus/prometheus.yml
 
 # gitops-archive
 gitops-archive/netdata/hp-laptop-ubuntu/netdataconfig/*
