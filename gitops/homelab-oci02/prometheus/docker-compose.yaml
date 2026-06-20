@@ -17,18 +17,6 @@ services:
     labels:
       io.containers.autoupdate: "registry"
 
-  node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter
-    command:
-      - "--path.rootfs=/host"
-    pid: host
-    restart: unless-stopped
-    volumes:
-      - "/:/host:ro,rslave"
-    labels:
-      io.containers.autoupdate: "registry"
-
   # Changed `/var/run/fail2ban/` permissions `sudo chown -R $(whoami):$(whoami) /var/run/fail2ban` and
   # added `pid: host` to the service definition to allow the container to access the host's fail2ban socket
   # TODO: Find a way to run this container as a non-root user
