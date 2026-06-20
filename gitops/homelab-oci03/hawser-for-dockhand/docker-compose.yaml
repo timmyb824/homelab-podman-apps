@@ -9,8 +9,6 @@ services:
     security_opt:
       - apparmor:unconfined
       - "label=type:container_runtime_t"
-    ports:
-      - "2376:2376"
     environment:
       - STACKS_DIR=/data/stacks
       - PUID=${USER_ID-1000}
