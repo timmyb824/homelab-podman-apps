@@ -7,8 +7,7 @@ services:
       - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock:z
       - hawser_stacks:/data/stacks
     security_opt:
-      - apparmor:unconfined
-      - "label=type:container_runtime_t"
+      - label=disable
     network_mode: host
     environment:
       - STACKS_DIR=/data/stacks
