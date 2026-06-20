@@ -14,7 +14,7 @@ services:
       - STACKS_DIR=/data/stacks
       - PUID=${USER_ID-1000}
       - PGID=${GROUP_ID-1000}
-      - DOCKHAND_SERVER_URL=ws://pihole2.tailebee.ts.net:3005/api/hawser/connect
+      - DOCKHAND_SERVER_URL=wss://dockhand.local.timmybtech.com/api/hawser/connect
       - TOKEN=${HAWSER_TOKEN}
 
 volumes:
