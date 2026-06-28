@@ -5,7 +5,7 @@ services:
   # Next run `mkdir config && sudo chown -R 755 config`
   # Must be running podman 4.0.0+ if not `sudo apt purge podman` then install with podman.sh
   podman-exporter-rootless:
-    image: quay.io/navidys/prometheus-podman-exporter:v1.21.1
+    image: quay.io/navidys/prometheus-podman-exporter:v1.21.2
     container_name: podman-exporter
     security_opt:
       - label=disable
