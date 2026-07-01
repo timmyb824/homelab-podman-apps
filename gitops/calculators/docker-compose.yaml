@@ -1,0 +1,8 @@
+---
+services:
+  calculators:
+    image: docker.io/binarycodes/calculators:latest
+    container_name: calculators
+    ports:
+      - "8087:8080"
+    restart: unless-stopped
