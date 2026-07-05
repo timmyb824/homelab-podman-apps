@@ -220,14 +220,27 @@ redeploy_app() {
         msg_info "Bringing down containers for $service_name"
         podman-compose -p "$service_name" down || true
 
-        msg_info "Starting containers for $service_name"
-        podman-compose --in-pod=0 -p "$service_name" up -d --force-recreate
+        msg_info "Creating containers for $service_name (no start)"
+        podman-compose --in-pod=0 -p "$service_name" up --no-start --force-recreate
 
         msg_info "Creating quadlet for $service_name"
         podman_quadlet.sh create container "$service_name"
 
-        msg_ok "Redeploy complete for $service_name"
-        log INFO "Redeploy complete for $service_name"
+        msg_info "Handing off to systemd"
+        systemctl --user daemon-reload
+        systemctl --user reset-failed "container-${service_name}.service" 2>/dev/null || true
+        systemctl --user restart "container-${service_name}.service"
+
+        # verify the port forwarder is owned by the unit, not by us
+        sleep 2
+        if systemctl --user is-active --quiet "container-${service_name}.service"; then
+            msg_ok "Redeploy complete for $service_name (systemd-owned)"
+            log INFO "Redeploy complete for $service_name"
+        else
+            msg_error "Unit container-${service_name}.service not active after restart"
+            log ERROR "Unit not active for $service_name"
+            exit 1
+        fi
     ) || {
         msg_error "Redeploy failed for $service_name"
         log ERROR "Redeploy failed for $service_name"
