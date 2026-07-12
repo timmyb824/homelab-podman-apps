@@ -7,7 +7,7 @@ services:
       - "DATA_SOURCE_URI=${DATA_SOURCE_URI}"
       - "DATA_SOURCE_USER=${DATA_SOURCE_USER}"
       - "DATA_SOURCE_PASS=${DATA_SOURCE_PASS}"
-    image: quay.io/prometheuscommunity/postgres-exporter:v0.20.0
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.20.1
     restart: unless-stopped
     labels:
       io.containers.autoupdate: "registry"
