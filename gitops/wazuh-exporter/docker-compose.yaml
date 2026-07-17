@@ -7,9 +7,9 @@ services:
       - "WAZUH_API_PORT=55000"
       - "WAZUH_API_USERNAME=${WAZUH_API_USERNAME}"
       - "WAZUH_API_PASSWORD=${WAZUH_API_PASSWORD}"
+      - "EXPORTER_PORT=5008"
     image: docker.io/kennyopennix/wazuh-exporter:latest
-    ports:
-      - 5008:5000
+    network_mode: host
     restart: unless-stopped
     labels:
       io.containers.autoupdate: "registry"
