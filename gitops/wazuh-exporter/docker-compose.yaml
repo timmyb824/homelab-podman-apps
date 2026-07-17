@@ -1,0 +1,15 @@
+---
+services:
+  wazuh-exporter:
+    container_name: wazuh-exporter
+    environment:
+      - "WAZUH_API_HOST=${WAZUH_API_HOST}"
+      - "WAZUH_API_PORT=55000"
+      - "WAZUH_API_USERNAME=${WAZUH_API_USERNAME}"
+      - "WAZUH_API_PASSWORD=${WAZUH_API_PASSWORD}"
+    image: docker.io/kennyopennix/wazuh-exporter:latest
+    ports:
+      - 5008:5000
+    restart: unless-stopped
+    labels:
+      io.containers.autoupdate: "registry"
