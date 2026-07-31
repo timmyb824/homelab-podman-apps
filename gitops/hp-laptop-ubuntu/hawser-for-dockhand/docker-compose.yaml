@@ -12,6 +12,7 @@ services:
       - STACKS_DIR=/data/stacks
       - PUID=${USER_ID-1000}
       - PGID=${GROUP_ID-1000}
+      - TOKEN=${HAWSER_TOKEN}
 
 volumes:
   hawser_stacks:
