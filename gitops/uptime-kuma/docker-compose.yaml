@@ -1,7 +1,7 @@
 ---
 services:
   uptime-kuma:
-    image: docker.io/louislam/uptime-kuma:2.4.0
+    image: docker.io/louislam/uptime-kuma:2.5.0
     container_name: uptime-kuma
     volumes:
       - ./data:/app/data:Z
