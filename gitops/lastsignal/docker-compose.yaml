@@ -1,5 +1,7 @@
-# Production stack
-# Usage: docker compose -f docker-compose.prod.yaml --env-file .env.production up -d --build
+# IMAGE UPDATE
+# From hp-laptop-ubuntu pull latest changes and rebuild image
+# Then push to registry.local.timmybtech.com/lastsignal:latest
+# From pihole2 pull latest image and redeploy lastsignal
 
 services:
   app:
