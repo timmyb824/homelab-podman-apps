@@ -5,7 +5,7 @@ volumes:
 
 services:
   prometheus:
-    image: docker.io/prom/prometheus:v3.13.2
+    image: docker.io/prom/prometheus:v3.14.0
     container_name: prometheus
     user: "root"
     volumes:
