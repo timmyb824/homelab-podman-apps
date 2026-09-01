@@ -217,6 +217,9 @@ redeploy_app() {
         msg_info "Stopping quadlet service container-${service_name}.service"
         systemctl --user stop "container-${service_name}.service" 2>/dev/null || true
 
+        msg_info "Pulling latest images for $service_name"
+        podman-compose -p "$service_name" pull
+
         msg_info "Bringing down containers for $service_name"
         podman-compose -p "$service_name" down || true
 
