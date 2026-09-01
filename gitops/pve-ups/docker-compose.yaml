@@ -1,0 +1,32 @@
+services:
+  pve-ups:
+    image: ghcr.io/ffind-dev/pve-ups:latest
+    container_name: pve-ups
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      # Baked into the image already; only override if you know what you're doing.
+      - PVE_USV_DEPLOYMENT=docker
+      # Container timezone - set this. The daily Proxmox self-test runs at the configured
+      # hour in the container's local time, and in Docker mode the timezone cannot be set
+      # from the web UI. Without TZ the container runs in UTC.
+      - TZ=America/New_York
+    volumes:
+      - pve-ups-config:/etc/pve-usv # config.yaml (contains secrets, 0600)
+      - pve-ups-data:/var/lib/pve-usv # events.db + persistent engine state
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8080/api/health').status==200 else 1)",
+        ]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+
+volumes:
+  pve-ups-config:
+  pve-ups-data:
