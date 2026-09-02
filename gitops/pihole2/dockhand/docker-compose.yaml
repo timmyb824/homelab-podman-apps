@@ -1,7 +1,7 @@
 ---
 services:
   dockhand:
-    image: docker.io/fnsys/dockhand:v1.0.45
+    image: docker.io/fnsys/dockhand:v1.0.46
     container_name: dockhand
     restart: unless-stopped
     environment:
