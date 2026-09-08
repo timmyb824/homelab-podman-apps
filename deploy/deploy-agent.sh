@@ -189,7 +189,7 @@ git fetch origin "$BRANCH"
 OLD_REV=$(git rev-parse HEAD)
 REMOTE=$(git rev-parse "origin/$BRANCH")
 
-if [ "$OLD_REV" = "$REMOTE" ] && [ "$FORCE_DEPLOY" != true ] && [ -z "$SELECTED_APP_DIR" ]; then
+if [ "$OLD_REV" = "$REMOTE" ] && [ "$FORCE_DEPLOY" != true ] && [ -z "$SELECTED_APP_DIR" ] && [ -z "${_DEPLOY_AGENT_REEXEC:-}" ]; then
     log INFO "No new commits on $BRANCH; exiting"
     exit 0
 fi
@@ -205,6 +205,19 @@ git pull --ff-only origin "$BRANCH"
 
 NEW_REV=$(git rev-parse HEAD)
 log INFO "Pulled changes: $OLD_REV -> $NEW_REV"
+
+# restore original OLD_REV on re-exec so change detection still works
+if [ -n "${_DEPLOY_AGENT_OLD_REV:-}" ]; then
+    OLD_REV="$_DEPLOY_AGENT_OLD_REV"
+    unset _DEPLOY_AGENT_OLD_REV
+fi
+
+# if our own script was updated in this pull, re-exec with the new version
+if [ -z "${_DEPLOY_AGENT_REEXEC:-}" ] && [ "$OLD_REV" != "$NEW_REV" ] \
+    && git diff --name-only "$OLD_REV" "$NEW_REV" | grep -q "deploy/deploy-agent.sh"; then
+    msg_info "deploy-agent.sh was updated; re-executing with new version"
+    _DEPLOY_AGENT_REEXEC=1 _DEPLOY_AGENT_OLD_REV="$OLD_REV" exec bash "$REPO/deploy/deploy-agent.sh" "$@"
+fi
 
 redeploy_app() {
     local app_dir="$1"
