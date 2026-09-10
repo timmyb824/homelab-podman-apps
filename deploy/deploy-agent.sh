@@ -245,10 +245,16 @@ redeploy_app() {
         msg_info "Creating quadlet for $service_name"
         podman_quadlet.sh create container "$service_name"
 
+        log INFO "DEBUG: quadlet file contents after generation:"
+        cat "$HOME/.config/containers/systemd/container-${service_name}.container" 2>/dev/null | grep -E "^Image=" || log WARN "DEBUG: no Image= line found in quadlet"
+
         msg_info "Handing off to systemd"
         systemctl --user daemon-reload
         systemctl --user reset-failed "container-${service_name}.service" 2>/dev/null || true
         systemctl --user restart "container-${service_name}.service"
+
+        log INFO "DEBUG: running container image after systemd restart:"
+        podman inspect --format '{{.Config.Image}}' "$service_name" 2>/dev/null || log WARN "DEBUG: could not inspect container"
 
         # verify the port forwarder is owned by the unit, not by us
         sleep 2
