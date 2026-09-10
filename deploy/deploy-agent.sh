@@ -28,6 +28,8 @@ BRANCH="main"
 METRICS_STATE="$REPO/deploy/metrics_state"
 METRICS_OUT="/var/lib/node_exporter/textfile/podman_gitops.prom"
 
+export PATH="$HOME/.config/bin/utilities:$HOME/.local/bin:$PATH"
+
 usage() {
     cat <<EOF
 Usage: $(basename "$0") [--config <file>] [--force] [--app <name|path>]
