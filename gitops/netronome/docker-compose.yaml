@@ -1,0 +1,23 @@
+services:
+  netronome:
+    image: ghcr.io/autobrr/netronome:v0.16.0
+    container_name: netronome
+    network_mode: host
+    volumes:
+      - ./data:/data
+    cap_add:
+      - NET_RAW
+    environment:
+      - NETRONOME__DB_TYPE=postgres
+      - NETRONOME__DB_HOST=${DB_HOST}
+      - NETRONOME__DB_PORT=${DB_PORT}
+      - NETRONOME__DB_USER=${DB_USERNAME}
+      - NETRONOME__DB_PASSWORD=${DB_PASSWORD}
+      - NETRONOME__DB_NAME=${DB_DATABASE}
+      - NETRONOME__DB_SSLMODE=disable
+      - NETRONOME__OIDC_ISSUER=${OIDC_ISSUER}
+      - NETRONOME__OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
+      - NETRONOME__OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
+      - NETRONOME__OIDC_REDIRECT_URL=${OIDC_REDIRECT_URL}
+      - NETRONOME__AUTH_WHITELIST=0.0.0.0/0,::/0
+    restart: unless-stopped
