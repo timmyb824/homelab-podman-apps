@@ -1,7 +1,7 @@
 ---
 services:
   omni-tools:
-    image: docker.io/iib0011/omni-tools:0.6.0
+    image: docker.io/iib0011/omni-tools:0.7.0
     container_name: omni-tools
     restart: unless-stopped
     ports:
