@@ -1,0 +1,35 @@
+services:
+  nightingale:
+    image: flashcatcloud/nightingale:latest
+    container_name: nightingale
+    hostname: nightingale
+    restart: always
+    environment:
+      GIN_MODE: release
+      TZ: America/New_York
+    volumes:
+      - ./etc-nightingale:/app/etc
+    ports:
+      - "17000:17000"
+      - "20090:20090"
+    command:
+      - /app/n9e
+
+  # categraf:
+  #   image: "flashcatcloud/categraf:latest"
+  #   container_name: "categraf"
+  #   hostname: "categraf01"
+  #   restart: always
+  #   environment:
+  #     TZ: Asia/Shanghai
+  #     HOST_PROC: /hostfs/proc
+  #     HOST_SYS: /hostfs/sys
+  #     HOST_MOUNT_PREFIX: /hostfs
+  #     WAIT_HOSTS: nightingale:17000, nightingale:20090
+  #   volumes:
+  #     - ./etc-categraf:/etc/categraf/conf
+  #     - /:/hostfs
+  #   networks:
+  #     - nightingale
+  #   depends_on:
+  #     - nightingale
