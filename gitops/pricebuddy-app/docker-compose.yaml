@@ -1,0 +1,22 @@
+services:
+
+    app:
+        image: docker.io/jez500/pricebuddy:v1.0.57
+        container_name: pricebuddy-app
+        ports:
+            - 8082:80
+        volumes:
+            - storage:/app/storage
+            - ./.env:/app/.env
+        environment:
+            DB_HOST: ${DB_HOST}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+            DB_DATABASE: ${DB_DATABASE}
+            APP_USER_EMAIL: ${APP_USER_EMAIL}
+            APP_USER_PASSWORD: ${APP_USER_PASSWORD}
+            SCRAPER_BASE_URL: http://192.168.86.53:3030
+            AFFILIATE_ENABLED: 'false' # See https://pricebuddy.jez.me/support-project.html
+
+volumes:
+    storage:
