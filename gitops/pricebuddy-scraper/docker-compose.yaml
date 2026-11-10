@@ -2,9 +2,5 @@ services:
     scraper:
         image: docker.io/jez500/seleniumbase-scrapper:v1.0.1
         container_name: pricebuddy-scraper
-        networks:
-            - pricebuddy
-        depends_on:
-            - app
         ports:
             - 3030:3000
