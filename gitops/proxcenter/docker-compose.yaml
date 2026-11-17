@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: ghcr.io/adminsyspro/proxcenter-frontend:v1.4.14
+    image: ghcr.io/adminsyspro/proxcenter-frontend:v1.5.0
     container_name: proxcenter
     restart: unless-stopped
     ports:
