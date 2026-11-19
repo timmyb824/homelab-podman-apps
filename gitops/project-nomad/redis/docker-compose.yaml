@@ -1,0 +1,26 @@
+name: project-nomad
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  redis:
+    image: docker.io/redis:7-alpine
+    container_name: nomad_redis
+    logging: *default-logging
+    volumes:
+      - ../cache:/data # Persist Redis data on the host. This path can be changed if needed, just make sure it's writable by the container. Host persistence is important for Redis to ensure your data isn't lost when the container is removed or updated.
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - shared
+
+networks:
+  shared:
+    name: shared

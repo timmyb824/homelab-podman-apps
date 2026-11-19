@@ -30,7 +30,7 @@ services:
       #   3. Set it EXACTLY the same in NOMAD_STORAGE_PATH and the disk-collector volume (both below).
       #      Paths are case-sensitive (/mnt/Data != /mnt/data); a mismatch makes Docker create a new
       #      empty folder, which is the usual cause of "my content disappeared after moving it".
-      - /opt/project-nomad/storage:/app/storage
+      - ../storage:/app/storage
       - /run/user/${USER_ID-1000}/podman/podman.sock:/var/run/docker.sock # Allows the admin service to communicate with the Host's Docker daemon
       - nomad-update-shared:/app/update-shared # Shared volume for update communication
     environment:
@@ -38,23 +38,27 @@ services:
       # NOMAD_STORAGE_PATH should equal the host path of the /app/storage volume above. The admin
       # normally auto-detects that mount, so this is a fallback used only if the container can't be
       # inspected. Keep it in sync anyway so the fallback never sends child apps to the wrong place.
-      - NOMAD_STORAGE_PATH=/opt/project-nomad/storage
+      - NOMAD_STORAGE_PATH=${NOMAD_STORAGE_PATH}
       - PORT=8080
       - LOG_LEVEL=info
       - APP_KEY=${APP_KEY}
       - HOST=0.0.0.0
       - URL=https://nomad.local.timmybtech.com
-      - DB_HOST=${DB_HOST}
+      - DB_HOST=mysql
       - DB_PORT=3306
       - DB_DATABASE=nomad
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=nomad
       - DB_SSL=false
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
       - DISABLE_COMPRESSION=false
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
       interval: 30s
