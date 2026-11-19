@@ -1,1 +1,2 @@
 gitops/pricebuddy-app/.app.env
+gitops/project-nomad/nomad-admin/.app.env

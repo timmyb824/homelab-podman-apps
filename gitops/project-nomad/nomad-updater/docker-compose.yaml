@@ -1,0 +1,31 @@
+name: project-nomad
+
+# Cap every container's log at 3 x 10 MB. Docker's default json-file log never rotates, and on a
+# small root disk an unbounded log can fill / and take MySQL down with it (#1412).
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  updater:
+    # Updater is a lightweight sidecar container that allows the admin container to be updated from within it's own UI
+    image: ghcr.io/crosstalk-solutions/project-nomad-sidecar-updater:latest
+    pull_policy: always
+    container_name: nomad_updater
+    logging: *default-logging
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Allows communication with the Host's Docker daemon
+      - /opt/project-nomad:/opt/project-nomad # Writable access required so the updater can set the correct image tag in compose.yml. This needs to be the same location that the compose file is located at on the host for the updater to work correctly
+      - nomad-update-shared:/shared # Shared volume for communication with admin container
+    networks:
+      - shared
+
+volumes:
+  nomad-update-shared:
+    driver: local
+
+networks:
+  shared:
+    name: shared
