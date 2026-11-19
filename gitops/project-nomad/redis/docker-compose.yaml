@@ -19,7 +19,9 @@ services:
       timeout: 10s
       retries: 3
     networks:
-      - shared
+      shared:
+        aliases:
+          - nomad-redis
 
 networks:
   shared:

@@ -44,21 +44,22 @@ services:
       - APP_KEY=${APP_KEY}
       - HOST=0.0.0.0
       - URL=https://nomad.local.timmybtech.com
-      - DB_HOST=mysql
+      - DB_HOST=nomad-mysql
       - DB_PORT=3306
       - DB_DATABASE=nomad
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=nomad
       - DB_SSL=false
-      - REDIS_HOST=redis
+      - REDIS_HOST=nomad-redis
       - REDIS_PORT=6379
       - DISABLE_COMPRESSION=false
-    depends_on:
-      mysql:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+# only works if these are in the same file
+#    depends_on:
+#      mysql:
+#        condition: service_healthy
+#      redis:
+#        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
       interval: 30s
