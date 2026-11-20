@@ -1,0 +1,21 @@
+services:
+  nomad_logs:
+    container_name: nomad_logs
+    image: docker.io/amir20/dozzle:v10.6.6
+    security_opt:
+      - apparmor:unconfined
+      - "label=type:container_runtime_t"
+    volumes:
+      - /run/user/1000/podman/podman.sock:/var/run/docker.sock:z
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=false
+      - DOZZLE_ENABLE_SHELL=false
+    ports:
+      - 9999:8080
+    restart: unless-stopped
+    networks:
+      - shared
+
+networks:
+  shared:
+    name: shared

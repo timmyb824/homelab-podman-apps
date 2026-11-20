@@ -43,7 +43,7 @@ services:
       - LOG_LEVEL=info
       - APP_KEY=${APP_KEY}
       - HOST=0.0.0.0
-      - URL=https://nomad.local.timmybtech.com
+      - URL=http://192.168.86.53:8084
       - DB_HOST=nomad-mysql
       - DB_PORT=3306
       - DB_DATABASE=nomad
@@ -75,3 +75,6 @@ volumes:
 networks:
   shared:
     name: shared
+  default:
+    name: project-nomad_default
+    external: true
