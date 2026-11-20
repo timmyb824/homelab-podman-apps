@@ -1,5 +1,5 @@
 services:
-  nomad_logs:
+  logs:
     container_name: nomad-logs
     image: docker.io/amir20/dozzle:v10.6.6
     security_opt:
