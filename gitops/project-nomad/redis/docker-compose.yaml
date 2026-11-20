@@ -8,7 +8,7 @@ x-logging: &default-logging
 
 services:
   redis:
-    image: docker.io/redis:7-alpine
+    image: docker.io/redis:8-alpine
     container_name: nomad_redis
     logging: *default-logging
     volumes:
