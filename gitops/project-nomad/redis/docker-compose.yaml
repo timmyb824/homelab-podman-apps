@@ -21,9 +21,7 @@ services:
     healthcheck:
       disable: true
     networks:
-      shared:
-        aliases:
-          - nomad-redis
+      - shared
 
 networks:
   shared:
