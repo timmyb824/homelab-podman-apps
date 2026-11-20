@@ -8,7 +8,7 @@ x-logging: &default-logging
 
 services:
   mysql:
-    image: docker.io/mysql:8.4
+    image: docker.io/mysql:26.10
     container_name: nomad-mysql
     logging: *default-logging
     restart: unless-stopped
