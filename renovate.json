@@ -3,6 +3,14 @@
   "extends": [
     "config:recommended"
   ],
+  "packageRules": [
+    {
+      "description": "Never auto-bump MySQL across major versions (needs a manual dump/upgrade)",
+      "matchPackageNames": ["docker.io/mysql", "mysql"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ],
   "includePaths": [
     "gitops/**"
   ],
