@@ -9,7 +9,7 @@ x-logging: &default-logging
 services:
   mysql:
     image: docker.io/mysql:26.10
-    container_name: nomad_mysql
+    container_name: nomad-mysql
     logging: *default-logging
     restart: unless-stopped
     environment:
@@ -19,11 +19,13 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - ../db:/var/lib/mysql # Persist MySQL data on the host. This path can be changed if needed, just make sure it's writable by the container. Host persistence is important for the database to ensure your data isn't lost when the container is removed or updated.
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 10
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 10s
-      retries: 10
+      disable: true
     networks:
       shared:
         aliases:

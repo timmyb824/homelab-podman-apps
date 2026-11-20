@@ -12,7 +12,7 @@ services:
   disk-collector:
     image: ghcr.io/crosstalk-solutions/project-nomad-disk-collector:latest
     pull_policy: always
-    container_name: nomad_disk_collector
+    container_name: nomad-disk-collector
     logging: *default-logging
     volumes:
       - /:/host:Z  # Read-only view of host FS with rslave propagation so /sys and /proc submounts are visible
