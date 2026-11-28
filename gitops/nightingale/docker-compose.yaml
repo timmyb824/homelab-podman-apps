@@ -1,6 +1,6 @@
 services:
   nightingale:
-    image: docker.io/flashcatcloud/nightingale:9.3.0
+    image: docker.io/flashcatcloud/nightingale:9.4.0
     container_name: nightingale
     hostname: nightingale
     restart: always
