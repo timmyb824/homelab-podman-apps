@@ -1,7 +1,7 @@
 services:
 
     app:
-        image: docker.io/jez500/pricebuddy:v1.0.57
+        image: docker.io/jez500/pricebuddy:v1.0.58
         container_name: pricebuddy-app
         ports:
             - 8082:80
